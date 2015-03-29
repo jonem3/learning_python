@@ -4,10 +4,11 @@ class Sprite:
    
     step = 5
     radius = 5
-    def __init__(self,  x,  y,  screen):
+    def __init__(self,  x,  y,  screen,  colour):
         self.x = x
         self.y = y
         self.screen = screen
+        self.colour = colour
         self.draw_sprite()
         
     def move_north(self):
@@ -38,5 +39,8 @@ class Sprite:
         pygame.draw.circle(self.screen,  (255, 255, 255), (self.x, self.y), self.radius*2, 2)
         
     def draw_sprite(self):
-        pygame.draw.circle(self.screen,  (255, 0, 0), (self.x, self.y), self.radius*2, 2)
+        pygame.draw.circle(self.screen,  self.colour, (self.x, self.y), self.radius*2, 2)
         pygame.display.update()
+        
+    def is_at_same_coordinates(self,  other_sprite):
+        return self.x == other_sprite.x and self.y == other_sprite.y

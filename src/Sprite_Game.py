@@ -47,7 +47,7 @@ while not done:
         comp_sprite.move_east()
     done = player_sprite.is_at_same_coordinates( comp_sprite )
     #for event in pygame.event.get(): # User did something
-    time.sleep(0.05)
+    time.sleep(0.02)
     
     """
     # --- Main event loop

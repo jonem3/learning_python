@@ -36,8 +36,7 @@ class Sprite:
             self.draw_sprite()
         
     def rm_sprite(self):
-        pygame.draw.circle(self.screen,  (255, 255, 255), (self.x, self.y), self.radius*2, 2)
-        
+        pygame.draw.circle(self.screen,  (0, 0, 255), (self.x, self.y), self.radius*2, 2)
     def draw_sprite(self):
         pygame.draw.circle(self.screen,  self.colour, (self.x, self.y), self.radius*2, 2)
         pygame.display.update()

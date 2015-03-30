@@ -9,7 +9,7 @@ pygame.init()
 
 pygame.init()
 screen = pygame.display.set_mode((640,480))
-screen.fill((255, 255, 255))
+screen.fill((0, 0, 255))
 player_sprite = Sprite(320, 240, screen, (255, 0, 0))
 comp_sprite = Sprite(0, 0, screen, (0, 255, 0))
 clock = pygame.time.Clock()

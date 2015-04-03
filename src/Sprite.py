@@ -8,7 +8,8 @@ class SuperSprite(Sprite):
     WEST = 3
     STATIONARY = -1
     
-    step = 5
+    STANDARD_STEP = 5
+    EVIL_STEP = 8
 
     def __init__(self,  name,  x,  y,  screen,  image):
         # Call the parent class (Sprite) constructor
@@ -23,14 +24,18 @@ class SuperSprite(Sprite):
         self.direction = SuperSprite.STATIONARY
         
     def move(self):
+        step = SuperSprite.EVIL_STEP if self.is_evil() else SuperSprite.STANDARD_STEP
         if self.direction == SuperSprite.NORTH and self.rect.y > 40:
-            self.rect.y -= SuperSprite.step
+            self.rect.y -= step
         if self.direction == SuperSprite.SOUTH and self.rect.y < self.screen.get_height() - self.rect.height:
-            self.rect.y += SuperSprite.step
+            self.rect.y += step
         if self.direction == SuperSprite.WEST and self.rect.x > 0:
-            self.rect.x -= SuperSprite.step
+            self.rect.x -= step
         if self.direction == SuperSprite.EAST and self.rect.x < self.screen.get_width() - self.rect.width:
-            self.rect.x += SuperSprite.step  
+            self.rect.x += step  
+            
+    def is_evil(self):
+        return self.name.startswith("Evil")
             
     def __repr__(self):
         return self.name + ' at ' + str(self.rect.x) + ',' + str(self.rect.y)

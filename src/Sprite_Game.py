@@ -25,15 +25,16 @@ if difficulty.lower() == "test":
     
 score = 0
 
-def render_score( screen ):
+def render_score( screen, image_number):
     font = pygame.font.SysFont('Calibri', 25, True, False)
     score_text = font.render("Score " + str(score), True, WHITE)
     screen.blit(score_text, [screen.get_width() - 100, 10])
     
+    
     score_icon_group = pygame.sprite.Group()
     for life in range(0, lives):
         x = 20 + (life * 29)
-        score_icon_group.add(SuperSprite("Score",  x, 10, screen,"../images/PacMK1.png",1,   None))
+        score_icon_group.add(SuperSprite("Score",  x, 10, screen,"../images/open_closed_pac.png",2, image_number, None))
     score_icon_group.draw(screen)
 
    
@@ -46,23 +47,23 @@ walls.add(Wall(0, 50, 200, 10))
 walls.add(Wall(95, 300, 200, 10))
 walls.add(Wall(60, 200, 10, 400))
 
-pacman = SuperSprite("Pacman",  320, 240, screen,"../images/open_closed_pac.png", 2,  walls)
+pacman = SuperSprite("Pacman",  320, 240, screen,"../images/open_closed_pac.png", 2, 0, walls)
 pacman_group = pygame.sprite.Group()
 pacman_group.add(pacman)
 
 ghost_group = pygame.sprite.Group()
 evil_ghost_count = GHOST_COUNT / 20
-if evil_ghost_count < 3:
-    evil_ghost_count = 3
+if evil_ghost_count < lives:
+    evil_ghost_count = lives
 for ghosts in range(0, GHOST_COUNT):
     ghost_x = random.randint(0, screen.get_width() -24)
     ghost_y = random.randint(40, screen.get_height() -24)
     ghost = None
     if ghosts < evil_ghost_count:
-        ghost = SuperSprite("Evil Ghost",  ghost_x, ghost_y, screen, "../images/EvilGhost.png",  1,  walls)
+        ghost = SuperSprite("Evil Ghost",  ghost_x, ghost_y, screen, "../images/EvilGhost.png",  1, 0, walls)
     else:
-        ghost = SuperSprite("Ghost",  ghost_x, ghost_y, screen, "../images/GhostMK1.png",  1,  walls)
-    ghost.direction = random.randint(0, 3)
+        ghost = SuperSprite("Ghost",  ghost_x, ghost_y, screen, "../images/GhostMK1.png",  1, 0, walls)
+    ghost.direction = random.randint(0, 3) 
     ghost_group.add(ghost)
     
 clock = pygame.time.Clock()
@@ -126,7 +127,7 @@ while not done:
     pacman_group.draw(screen)
     ghost_group.draw(screen)
     walls.draw(screen)
-    render_score(screen)  
+    render_score(screen, pacman_image)  
     pygame.display.update()  
     
     

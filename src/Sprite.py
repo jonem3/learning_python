@@ -18,16 +18,16 @@ class SuperSprite(Sprite):
     STANDARD_STEP = 5
     EVIL_STEP = random.randint(3, 12)
 
-    def __init__(self,  name,  x,  y,  screen,  image,  image_count,  walls):
+    def __init__(self,  name,  x,  y,  screen,  image,  image_count,image_number, walls):
         # Call the parent class (Sprite) constructor
         super(SuperSprite, self).__init__()
         # Load the image
         self.sprite_sheet = pygame.image.load(image).convert()
         # Create a new blank image
         self.image = pygame.Surface([SuperSprite.SPRITE_DIMENSION, SuperSprite.SPRITE_DIMENSION]).convert()
- 
+        left_side = image_number * SuperSprite.SPRITE_DIMENSION
         # Copy the sprite from the large sheet onto the smaller image
-        self.image.blit(self.sprite_sheet, (0, 0), (0, 0, SuperSprite.SPRITE_DIMENSION, SuperSprite.SPRITE_DIMENSION))
+        self.image.blit(self.sprite_sheet, (0, 0), (left_side, 0, SuperSprite.SPRITE_DIMENSION, SuperSprite.SPRITE_DIMENSION))
         
         self.image_count = image_count
         self.image.set_colorkey(WHITE)

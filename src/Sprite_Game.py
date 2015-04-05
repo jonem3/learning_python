@@ -39,7 +39,7 @@ def render_score( screen, image_number):
 
 
 pygame.init()
-pygame.display.set_caption("Don't get eaten by zombie ghosts and eat red ghosts as pac man")
+pygame.display.set_caption("PacMan Chomp By Matthew Jones")
 screen = pygame.display.set_mode((1024,800))
 
 walls = pygame.sprite.Group()
@@ -48,7 +48,7 @@ for line in wall_file:
         coords = [int(x) for x in line.split(',')]
         walls.add(Wall(coords[0],coords[1],coords[2],coords[3] ))
 
-pacman = SuperSprite("Pacman",  320, 240, screen,"../images/open_closed_pac.png", 2, 0, walls)
+pacman = SuperSprite("Pacman",  0, 766, screen,"../images/open_closed_pac.png", 2, 0, walls)
 pacman_group = pygame.sprite.Group()
 pacman_group.add(pacman)
 
